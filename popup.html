@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mattel Scanner Next</title>
+  <style>
+    body {
+      min-width: 360px;
+      margin: 0;
+      padding: 18px;
+      background: #0b0c10;
+      color: #f4f4f5;
+      font: 14px/1.4 Arial, sans-serif;
+    }
+    h1 { margin: 0 0 14px; font-size: 20px; }
+    .card {
+      padding: 12px;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .label { color: #a1a1aa; font-size: 12px; }
+    #status { margin-top: 8px; }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: 0;
+      border-radius: 7px;
+      cursor: pointer;
+      background: #66fcf1;
+      color: #071014;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mattel Scanner Next</h1>
+  <div class="card">
+    <div class="label">Scanner status</div>
+    <div id="status">Loading...</div>
+  </div>
+  <div class="card">
+    <div class="label">Last catalog count</div>
+    <div id="count">—</div>
+  </div>
+  <div class="card">
+    <div class="label">Last scan</div>
+    <div id="lastScan">—</div>
+  </div>
+  <button id="scanNow">SCAN NOW</button>
+  <script src="popup.js"></script>
+</body>
+</html>
