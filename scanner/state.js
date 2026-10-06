@@ -96,19 +96,25 @@ export function mergeCatalog(state, catalog, now = Date.now()) {
 
     const wasAvailable = previous.available === true;
     const isAvailable = normalized.available === true;
+    const restocked = !wasAvailable && isAvailable;
+    const soldOut = wasAvailable && !isAvailable;
 
     next.products[normalized.key] = {
       ...previous,
       ...normalized,
       firstSeenAt: previous.firstSeenAt ?? normalized.firstSeenAt,
       lastSeenAt: now,
-      lastAvailableAt: isAvailable ? now : previous.lastAvailableAt,
-      lastUnavailableAt: isAvailable ? previous.lastUnavailableAt : now
+      lastAvailableAt: isAvailable
+        ? (restocked ? now : previous.lastAvailableAt)
+        : previous.lastAvailableAt,
+      lastUnavailableAt: isAvailable
+        ? previous.lastUnavailableAt
+        : (soldOut ? now : previous.lastUnavailableAt)
     };
 
-    if (!wasAvailable && isAvailable) {
+    if (restocked) {
       changes.restocks.push(next.products[normalized.key]);
-    } else if (wasAvailable && !isAvailable) {
+    } else if (soldOut) {
       changes.sellouts.push(next.products[normalized.key]);
     } else {
       changes.unchanged += 1;
