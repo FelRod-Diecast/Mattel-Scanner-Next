@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Mattel Scanner Next",
+  "version": "0.1.0",
+  "description": "Mattel Creations product, launch, restock, sellout, and event scanner.",
+  "permissions": [
+    "alarms",
+    "notifications",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://creations.mattel.com/*",
+    "https://*.mattel.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Mattel Scanner Next",
+    "default_popup": "popup.html"
+  }
+}
